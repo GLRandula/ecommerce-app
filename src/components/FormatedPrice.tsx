@@ -13,7 +13,11 @@ const FormatedPrice = ({ amount, className }: Props) => {
     minimumFractionDigits: 2,
   });
 
-  return <span className={twMerge("text-base font-semibold", className)}>{priceFormat}</span>;
+  return (
+    <span className={twMerge("text-base font-semibold", className)}>
+      {priceFormat}
+    </span>
+  );
 };
 
 export default FormatedPrice;
