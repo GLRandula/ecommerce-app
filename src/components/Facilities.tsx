@@ -1,8 +1,8 @@
-import React from 'react'
-import { FaClockRotateLeft, FaWallet } from 'react-icons/fa6';
-import { GoRocket } from 'react-icons/go';
-import { PiChats } from 'react-icons/pi';
-import Container from './Container';
+import React from "react";
+import { FaClockRotateLeft, FaWallet } from "react-icons/fa6";
+import { GoRocket } from "react-icons/go";
+import { PiChats } from "react-icons/pi";
+import Container from "./Container";
 
 const data = [
   {
@@ -30,19 +30,22 @@ const data = [
 const Facilities = () => {
   return (
     <Container>
-    <div className='py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4'>
-      {data?.map((item) => (
-        <div key={item?.title} className='flex flex-col sm:flex-row items-center gap-3'>
-            <span className='text-3xl text-lightOrange'>{item?.icon}</span>
-        <div className='text-center'>
-            <h2 className='uppercase font-bold'>{item?.title}</h2>
-            <p className='text-sm text-lightText'>{item?.description}</p>
-        </div>
-        </div>
-      ))}
-    </div>
+      <div className="py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {data?.map((item) => (
+          <div
+            key={item?.title}
+            className="flex flex-col sm:flex-row items-center gap-3"
+          >
+            <span className="text-3xl text-lightOrange">{item?.icon}</span>
+            <div className="text-center">
+              <h2 className="uppercase font-bold">{item?.title}</h2>
+              <p className="text-sm text-lightText">{item?.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </Container>
-  )
-}
+  );
+};
 
-export default Facilities
+export default Facilities;
