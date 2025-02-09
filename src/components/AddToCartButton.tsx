@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react'
+import React, { useState } from 'react'
 import { ProductData } from '../../type';
 import { twMerge } from 'tailwind-merge';
 import { useDispatch } from 'react-redux';
@@ -14,11 +14,25 @@ interface Props {
 
 const AddToCartButton = ({ item, className }: Props) => {
 
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart(item));
-    toast.success(`${item?.title.substring(0, 12)} added successfully!`);
+    // dispatch(addToCart(item));
+    // toast.success(`${item?.title.substring(0, 12)} added successfully!`);
+    try {
+      setLoading(true);
+      dispatch(addToCart(item));
+      toast.success(`${item?.title.substring(12, 0)} added successfully!`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
