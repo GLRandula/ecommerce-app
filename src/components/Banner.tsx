@@ -10,7 +10,7 @@ import FormatedPrice from "./FormatedPrice";
 
 const Banner = async () => {
   const banners = await getBannersData();
-  const singleBanner = banners[0];
+  const singleBanner = banners[2];
   // console.log(banners);
 
   return (
@@ -37,6 +37,7 @@ const Banner = async () => {
             src={urlFor(singleBanner?.image).url()}
             alt={singleBanner?.title}
             width={500}
+            priority
             height={500}
             className="object-contain h-72 md:h-full max-h-[600px] self-end group-hover:scale-105 hoverEffect"
           />
@@ -44,7 +45,7 @@ const Banner = async () => {
 
         {/* Right Half - Double Image */}
         <div className="flex flex-col space-y-5 md:space-y-10 h-auto md:max-h-[600px]">
-          {banners.slice(1, 3).map((item: BannerData) => (
+          {banners.slice(0, 2).map((item: BannerData) => (
             <div
               key={item?._id}
               className="h-full md:h-1/2 bg-bgLight rounded-lg overflow-hidden flex justify-center items-center p-5 group gap-2"
@@ -72,6 +73,7 @@ const Banner = async () => {
                 src={urlFor(item?.image).url()}
                 alt={singleBanner?.title}
                 width={500}
+                priority
                 height={500}
                 className="object-contain h-72 md:h-60 w-1/2 group-hover:scale-105 hoverEffect"
               />
