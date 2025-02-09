@@ -8,7 +8,7 @@ import { IoMenu } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText/50'>
+    <header className='w-full h-20 bg-accentWhite border-b-[1px] border-b-lightText/50 sticky z-50 top-0 left-0'>
       <Container className='h-full flex items-center justify-between gap-5 lg:gap-10'>
         <Logo />
         <SearchInput />
@@ -17,7 +17,7 @@ const Header = () => {
             <Link key={item?.title} href={item?.link} 
             className='navBarItem'>
               {item?.title}
-            </Link>
+            </Link> 
           ))}
           <Link href={"/signin"} className='navBarItem'>
             Sign in
