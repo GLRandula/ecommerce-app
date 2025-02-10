@@ -8,8 +8,10 @@ import { resetCart } from "@/redux/shoppersSlice";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import FormatedPrice from "./FormatedPrice";
+import Button from "./Button";
 
-const CartContainer = () => {
+const CartContainer = ({ session }: any) => {
   const { cart } = useSelector((state: StoreState) => state?.shoppers);
   const dispatch = useDispatch();
 
@@ -42,6 +44,31 @@ const CartContainer = () => {
           >
             Reset Cart
           </button>
+          <div className="max-w-7xl gap-4 flex justify-end mt-4">
+            <div className="w-96 flex flex-col gap-4">
+              <h1 className="text-2xl font-semibold text-right">Cart Totals</h1>
+              <div>
+                <div>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium">
+                    Subtotal <FormatedPrice amount={0} />
+                  </p>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium">
+                    Shipping Charge <FormatedPrice amount={0} />
+                  </p>
+                  <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
+                    Total <FormatedPrice amount={0} />
+                  </p>
+                </div>
+              </div>
+              <Button
+                disabled={!session?.user}
+                className="py-3 px-8 rounded-md disabled:bg-darkOrange/40"
+              >
+                Proceed To Checkout
+              </Button>
+              {session?.user && <p className="text-center text-sm font-medium text-lightRed -mt-3">Please Sign in to make Checkout</p>}
+            </div>
+          </div>
         </div>
       ) : (
         <motion.div
