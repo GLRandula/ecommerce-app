@@ -14,7 +14,7 @@ const SideBar = async () => {
       {/* User Account */}
       <Link
         href={ session?.user ? "/dashboard" : "/signin"}
-        className="bg-accentWhite w-16 h-[70px] rounded-md flex flex-col gap-1 text-accent justify-center items-center shadow-sm shadow-lightGreen group overflow-hidden"
+        className="bg-accentWhite w-16 h-[70px] rounded-md flex flex-col gap-1 text-accent justify-center items-center shadow-sm shadow-lightOrange group overflow-hidden"
       >
         <div className="flex items-center justify-center">
           {session?.user ? (

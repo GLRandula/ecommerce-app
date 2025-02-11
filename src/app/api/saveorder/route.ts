@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (request: NextRequest) => {
   try {
     const reqBody = await request.json();
+    // console.log(reqBody);
     const { cart, email, id, totalAmt } = await reqBody;
 
     const orderItem = {
