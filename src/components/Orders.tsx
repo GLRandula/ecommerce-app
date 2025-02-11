@@ -112,7 +112,7 @@ const Orders = () => {
                         onClick={() => handleDeleteOrder(item?.id)}
                         variant="delete"
                       >
-                        <MdClose className="text-base mt-1" /> Delete order
+                        Delete order
                       </Button>
                     </div>
                   </CardContent>
