@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductData, StoreState } from "../../type";
 import CartItem from "./CartItem";
@@ -12,8 +12,36 @@ import FormatedPrice from "./FormatedPrice";
 import Button from "./Button";
 
 const CartContainer = ({ session }: any) => {
+  const [totalAmt, setTotalAmt] = useState(0);
   const { cart } = useSelector((state: StoreState) => state?.shoppers);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+      let price = 0;
+      cart.map((item) => {
+        price += item?.price * item?.quantity;
+        return price;
+      });
+      setTotalAmt(price);
+    }, [cart]);
+
+  const handleCheckout = async () => {
+    //toast.success("Hello from Checkout!");
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart,
+        email: session?.user?.email,
+      }),
+    });
+    const {url} = await response.json();
+    if (url) {
+      window.location.href = url;
+    }
+  };
 
   const handleResetCart = () => {
     const confirmed = window.confirm("Are you sure to reset your cart?");
@@ -49,24 +77,32 @@ const CartContainer = ({ session }: any) => {
               <h1 className="text-2xl font-semibold text-right">Cart Totals</h1>
               <div>
                 <div>
-                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium">
-                    Subtotal <FormatedPrice amount={0} />
+                  <p className="flex items-center justify-between border-[1px] border-gray-300 border-b-0 py-1.5 px-4 text-lg font-medium">
+                    Subtotal <FormatedPrice amount={totalAmt} />
                   </p>
-                  <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 px-4 text-lg font-medium">
+                  <p className="flex items-center justify-between border-[1px] border-gray-300 border-b-0 py-1.5 px-4 text-lg font-medium">
                     Shipping Charge <FormatedPrice amount={0} />
                   </p>
-                  <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
-                    Total <FormatedPrice amount={0} />
+                  <p className="flex items-center justify-between border-[1px] border-gray-300 py-1.5 text-lg px-4 font-medium">
+                    Total <FormatedPrice amount={totalAmt} />
                   </p>
                 </div>
               </div>
               <Button
+                onClick={handleCheckout}
                 disabled={!session?.user}
                 className="py-3 px-8 rounded-md disabled:bg-darkOrange/40"
               >
                 Proceed To Checkout
               </Button>
-              {session?.user && <p className="text-center text-sm font-medium text-lightRed -mt-3">Please Sign in to make Checkout</p>}
+              {!session?.user && (
+                  <Link
+                    href={"/signin"}
+                    className="text-sm font-medium text-darkOrange"
+                  >
+                    Please sign in to make Checkout
+                  </Link>
+                )}
             </div>
           </div>
         </div>

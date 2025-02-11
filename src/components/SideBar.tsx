@@ -26,7 +26,7 @@ const SideBar = async () => {
               className="rounded-full -translate-x-12 group-hover:translate-x-4 transition-transform duration-200"
             />
           ) : (
-            <MdSwitchAccount className="text-2xl -translate-x-3 group-hover:translate-x-12 transition-transform duration-200" />
+            <MdSwitchAccount className="text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200" />
           )}
 
           {session?.user ? (

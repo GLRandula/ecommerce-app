@@ -19,11 +19,14 @@ const Header = () => {
               {item?.title}
             </Link> 
           ))}
-          <Link href={"/signin"} className='navBarItem'>
-            Sign in
+          <Link href={"/orders"} className='navBarItem'>
+            Orders
           </Link>
           <Link href={"/studio"} className='navBarItem'>
             Studio
+          </Link>
+          <Link href={"/signin"} className='navBarItem'>
+            Sign in
           </Link>
         </div>
         <IoMenu className='inline-flex md:hidden cursor-pointer text-2xl hoverEffect hover:text-darkOrange'/>
