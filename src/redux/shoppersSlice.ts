@@ -26,28 +26,30 @@ export const shoppersSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const existingProduct = state?.cart?.find(
-        (item) => item._id === action.payload._id
+        (item) => item._id === action.payload
       );
       if (existingProduct) {
-        existingProduct.quantity = (existingProduct.quantity || 1) + 1;
-      } else {
+        // existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+        existingProduct.quantity += 1;
+      } 
+      else {
         state.cart.push({ ...action.payload, quantity: 1 });
       }
     },
     incresaeQuantity: (state, action) => {
       const existingProduct = state?.cart?.find(
-        (item) => item._id === action.payload._id
+        (item) => item?._id === action.payload
       );
       if (existingProduct) {
-        existingProduct.quantity = (existingProduct.quantity || 1) + 1;
+        existingProduct.quantity += 1;
       }
     },
     decresaeQuantity: (state, action) => {
       const existingProduct = state?.cart?.find(
-        (item) => item._id === action.payload
+        (item) => item?._id === action.payload
       );
       if (existingProduct) {
-        existingProduct.quantity! -= 1;
+        existingProduct.quantity -= 1;
       }
     },
     removeFromCart: (state, action) => {

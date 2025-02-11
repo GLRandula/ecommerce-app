@@ -33,7 +33,7 @@ const DashboardPage = async () => {
       }}>
         <button
           type="submit"
-          className="border border-lightRed px-8 py-2 mt-10 text-sm font-semibold rounded-md hover:bg-red-500 hover:text-white hoverEffect"
+          className="border border-lightRed px-8 py-2 mt-10 text-sm font-semibold rounded-sm hover:bg-red-500 hover:text-white hoverEffect"
         >
           Sign Out
         </button>

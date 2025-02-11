@@ -7,12 +7,12 @@ import {getFirestore} from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB8h7BZIGuo8gGhClsgMh0FxLK7b4NT-Jk",
-  authDomain: "shoppers-yt-2c536.firebaseapp.com",
-  projectId: "shoppers-yt-2c536",
-  storageBucket: "shoppers-yt-2c536.firebasestorage.app",
-  messagingSenderId: "268880502888",
-  appId: "1:268880502888:web:a46775a35b462cce20dbdd"
+  apiKey: "AIzaSyCuKweg8aPh2RgXhOxdozJ8nH93I7IyxkY",
+  authDomain: "shppers-yt-4172f.firebaseapp.com",
+  projectId: "shppers-yt-4172f",
+  storageBucket: "shppers-yt-4172f.firebasestorage.app",
+  messagingSenderId: "530605975680",
+  appId: "1:530605975680:web:2272de0953eccbfabc9e65"
 };
 
 // Initialize Firebase
@@ -20,3 +20,4 @@ const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db };
+
